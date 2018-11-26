@@ -1,0 +1,57 @@
+.clock {
+  display: block;
+  position: relative;
+  color: -color(black);
+
+  &__face {
+    display: none;
+
+    &--akkurat {
+      font-family: $akkurat;
+    }
+
+    &--t4 {
+      @extend %highlight-text;
+    }
+  }
+
+  // type
+  &--akkurat {
+    .clock__face--akkurat {
+      display: block;
+    }
+  }
+
+  &--t4Open {
+    .clock__face--t4 {
+      display: block;
+    }
+  }
+
+  // size
+  &--regular {
+    .clock__face--akkurat {
+      font-size: 48px;
+    }
+
+    .clock__face--t4 {
+      font-size: 72px;
+    }
+  }
+
+  &--large {
+    .clock__face--akkurat {
+      font-size: 72px;
+    }
+
+    .clock__face--t4 {
+      font-size: 90px;
+    }
+  }
+
+  &--hero {
+    .clock__face--t4 {
+      font-size: 150px;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+templatePath: src/templates
+staticPath: static
+buildPath: build
+
+deploy:
+- ${buildPath}/static
+
+htmlCompression:
+  enabled: true
+  options:
+    comments: true
+
+context:
+  site: data/global.graphql
+  assets: ../../static/assets/manifest.json
+  favicon: ../../static/assets/favicon-mainfest.json
+
+routes:
+  app:
+    path: /
+    template: layouts/app.html

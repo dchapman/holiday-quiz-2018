@@ -1,0 +1,26 @@
+$default-type-color: -color(black);
+
+div,
+p,
+span,
+li,
+small,
+label,
+input,
+select,
+button,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+em,
+figure,
+cite {
+  @include font-smoothing(on);
+
+  text-rendering: optimizeLegibility;
+}

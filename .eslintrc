@@ -1,0 +1,9 @@
+{
+  "extends": "xo-space/esnext",
+  "globals": {
+    "window": true,
+    "document": true,
+    "fetch": true,
+    "navigator": true
+  }
+}

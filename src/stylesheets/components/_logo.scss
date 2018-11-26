@@ -1,0 +1,58 @@
+.logo {
+  display: block;
+  position: relative;
+
+  &__vector {
+    display: none;
+
+    svg {
+      @extend %absolute-fill;
+    }
+  }
+
+  // position
+  .content__section--top & {
+    margin-top: 104px;
+  }
+
+  // type
+  &--black {
+    .logo__vector--black {
+      display: block;
+    }
+  }
+
+  &--multicolor {
+    .logo__vector--multicolor {
+      display: block;
+    }
+  }
+
+  // size
+  &--small {
+    width: 404px;
+    height: 98px;
+
+    & + .clock {
+      margin-top: 32px;
+    }
+  }
+
+  &--regular {
+    width: 528px;
+    height: 128px;
+
+    & + .clock {
+      margin-top: 40px;
+    }
+  }
+
+  &--large {
+    width: 776px;
+    height: 188px;
+
+    & + .clock {
+      margin-top: 56px;
+    }
+  }
+}

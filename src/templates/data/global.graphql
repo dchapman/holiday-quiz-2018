@@ -1,0 +1,24 @@
+query {
+	global: getGlobal {
+		background {
+			path
+		}
+		introduction {
+			graphic {
+				path
+			}
+			contentHtml
+			button {
+				text
+				url
+			}
+		}
+		social {
+			title
+			description
+			image {
+				path
+			}
+		}
+	}
+}

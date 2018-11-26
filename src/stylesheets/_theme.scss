@@ -1,0 +1,61 @@
+%theme-color {
+  .panel--orange & {
+    color: -color(sunglow);
+  }
+
+  .panel--yellow & {
+    color: -color(mustard);
+  }
+
+  .panel--pink & {
+    color: -color(blush);
+  }
+
+  .panel--green & {
+    color: -color(turquoise);
+  }
+
+  .panel--blue & {
+    color: -color(dodger);
+  }
+
+  .panel--skyBlue & {
+    color: -color(malibu);
+  }
+
+  .panel--background & {
+    color: -color(white) !important;
+  }
+}
+
+%theme-background {
+  &.panel--orange,
+  .panel--orange & {
+    background-color: -color(sunglow);
+  }
+
+  &.panel--yellow,
+  .panel--yellow & {
+    background-color: -color(mustard);
+  }
+
+  &.panel--pink,
+  .panel--pink & {
+    background-color: -color(blush);
+  }
+
+  &.panel--green,
+  .panel--green & {
+    background-color: -color(turquoise);
+  }
+
+  &.panel--blue,
+  .panel--blue & {
+    background-color: -color(dodger);
+  }
+
+  &.panel--skyBlue,
+  .panel--skyBlue & {
+    background-color: -color(malibu);
+  }
+}

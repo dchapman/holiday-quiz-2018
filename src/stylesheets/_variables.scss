@@ -1,0 +1,60 @@
+/* stylelint-disable */
+
+// font defaults
+$akkurat: "Akkurat Pro", Helvetica, sans-serif;
+$terminal-open: "Terminal Four Open", Helvetica, sans-serif;
+$terminal-fill: "Terminal Four Filled", Helvetica, sans-serif;
+
+// easing curves
+$ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+
+$ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-out-quint: cubic-bezier(0.075, 0.82, 0.165, 1);
+$ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-in-out-quart: cubic-bezier(0.86, 0, 0.07, 1);
+$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+$ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+$colors: (
+  black: #000000,
+  cod: #2d2d2d,
+  emperor: #555555,
+  dove: #616161,
+  alto: #cbcacb,
+  athens: #dadada,
+  gallery: #eeeeee,
+  white: #ffffff,
+  sunglow: #ffb931,
+  mustard: #ffe256,
+  spring: #00f99f,
+  turquoise: #50e7c5,
+  malibu: #46e7ff,
+  dodger: #4fa4fd,
+  blush: #ff85ff,
+  monza: #d0021b
+);
+
+
+// weights
+$font-weights: (
+  thin: 100,
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semi-bold: 600,
+  bold: 700,
+  heavy: 800,
+  black: 900
+);
+
+// z-index layers
+$layers: (
+  background,
+  content,
+  overlay
+);

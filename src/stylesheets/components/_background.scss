@@ -1,0 +1,17 @@
+.background {
+  @extend %absolute-fill;
+
+  &__video {
+    @extend %absolute-fill;
+
+    z-index: -z(background);
+
+    video {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+}

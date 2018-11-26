@@ -1,0 +1,20 @@
+body {
+  font-size: 10px;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+}
+
+html,
+body {
+  height: 1080px;
+}
+
+main {
+  flex-basis: 100%;
+  flex-grow: 2;
+}

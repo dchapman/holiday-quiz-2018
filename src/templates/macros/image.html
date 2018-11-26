@@ -1,0 +1,9 @@
+{% macro image(key, srcset, sizes, crop="center", imageloaded=true) %}
+  {% set comma = joiner() %}
+
+  <img src="{{ key | image({crop: crop}) }}"
+       {% if srcset %}srcset="{% for src in srcset %}{{ comma() }} {{ key | image({w: src}) }} {{ src }}w{% endfor %}"{% endif %}
+       {% if sizes %}sizes="{% for size in sizes %}{{ comma() }} {{ condition }} {{ width }}{% endfor %}"{% endif %}
+       {% if imageloaded %}data-image v-imageloaded{% endif %}
+  />
+{% endmacro %}
