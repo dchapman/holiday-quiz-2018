@@ -1,6 +1,6 @@
 <template>
 	<div class="quiz">
-		THIS IS THE QUIZ
+		<h1>THIS IS THE QUIZ</h1>
 
 		<button @click="completeQuiz">Complete Quiz</button>
 	</div>
@@ -12,6 +12,11 @@
 
   export default {
     name: 'quiz',
+    data() {
+		return {
+			question: 0
+		}
+    },
     methods: {
     	completeQuiz() {
     		eventBus.$emit('quizComplete');

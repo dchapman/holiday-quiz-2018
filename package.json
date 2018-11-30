@@ -86,6 +86,7 @@
     "babel-preset-env": "^1.6.0",
     "core-js": "^2.4.1",
     "dayjs": "^1.6.0",
+    "howler": "^2.0.15",
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
     "object-fit-images": "^2.3.1",
