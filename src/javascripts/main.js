@@ -1,7 +1,8 @@
-import objectFitImages from 'object-fit-images';
-
 import Vue from 'vue';
 import {Howl, Howler} from 'howler';
+
+import 'whatwg-fetch';
+import {apiEndpoint, bearerToken} from './utils/config';
 
 import Intro from './components/intro.vue';
 import Quiz from './components/quiz.vue';
@@ -23,13 +24,14 @@ export default new Vue({
       stage: 'intro',
       score: 0,
       user: 'Jane'
-    }
+    };
+  },
+  created() {
+    this.fetchChoomers();
   },
   mounted() {
-    objectFitImages();
-
     // track info test
-    s.getTrack('46wDtZkcoQdSelJ12emUIp').then((track) => {
+    /*s.getTrack('46wDtZkcoQdSelJ12emUIp').then((track) => {
       console.log('Track information', track);
 
       // setup the new Howl.
@@ -39,7 +41,7 @@ export default new Vue({
 
     }, function(err) {
       console.error(err);
-    });
+    });*/
 
     eventBus.$on('quizBegin', () => {
         this.stage = 'quiz';
@@ -52,6 +54,38 @@ export default new Vue({
     eventBus.$on('quizReset', () => {
         this.stage = 'intro';
     });
+  },
+  methods: {
+    fetchChoomers() {
+      const query = `
+        query {
+          getChoomerList {
+            total
+            items {
+              name
+            }
+          }
+        }
+      `;
+
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${bearerToken}`
+        },
+        body: JSON.stringify(query)
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+        })
+        .catch(function (error) {
+          console.log('error: ',error);
+
+          this.error = error;
+        });
+    }
   },
   components: {
     Intro,
