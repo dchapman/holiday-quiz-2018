@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import {Howl, Howler} from 'howler';
 
 import 'whatwg-fetch';
 import {apiEndpoint, bearerToken} from './utils/config';
@@ -23,26 +22,20 @@ export default new Vue({
     return {
       stage: 'intro',
       score: 0,
-      user: 'Jane'
+      userName: '',
+      members: [],
+      isLoaded: false
     };
+  },
+  computed: {
+    user() {
+      return this.members.filter(member => member.name === this.userName);
+    }
   },
   created() {
     this.fetchChoomers();
   },
   mounted() {
-    // track info test
-    /*s.getTrack('46wDtZkcoQdSelJ12emUIp').then((track) => {
-      console.log('Track information', track);
-
-      // setup the new Howl.
-      const sound = new Howl({
-        src: track.preview_url
-      });
-
-    }, function(err) {
-      console.error(err);
-    });*/
-
     eventBus.$on('quizBegin', () => {
         this.stage = 'quiz';
     });
@@ -62,7 +55,11 @@ export default new Vue({
           getChoomerList {
             total
             items {
+              _id
               name
+              image {
+                path
+              }
             }
           }
         }
@@ -74,11 +71,13 @@ export default new Vue({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${bearerToken}`
         },
-        body: JSON.stringify(query)
+        body: JSON.stringify({query})
       })
         .then(res => res.json())
         .then(res => {
-          console.log(res);
+          this.members = res.data.getChoomerList.items;
+          this.userName = this.members[0].name;
+          this.isLoaded = true;
         })
         .catch(function (error) {
           console.log('error: ',error);

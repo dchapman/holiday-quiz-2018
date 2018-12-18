@@ -2,7 +2,7 @@
 	<div class="results">
 		<h1>THESE ARE THE RESULTS</h1>
 
-		<p><span v-text="user"></span>, YOUR FINAL SCORE WAS: <span v-text="score"></span></p>
+		<p><span v-text="userName"></span>, YOUR FINAL SCORE WAS: <span v-text="score"></span></p>
 
 		<button @click="resetQuiz">Reset Quiz</button>
 	</div>
@@ -13,7 +13,7 @@
 
   export default {
     name: 'results',
-    props: ['score', 'user'],
+    props: ['score', 'user', 'userName'],
     methods: {
     	resetQuiz() {
     		eventBus.$emit('quizReset');

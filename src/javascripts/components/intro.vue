@@ -1,10 +1,9 @@
 <template>
 	<div class="intro">
 		THIS IS THE INTRO
-		<select :value="user" @input="$emit('update:user', $event.target.value)">
-			<option value="" disabled selected hidden>Who are you?</option>
-			<option value="Fred">Fred</option>
-			<option value="Jane">Jane</option>
+		<select :value="userName" @input="$emit('update:userName', $event.target.value)">
+
+			<option v-for="member in members" v-text="member.name"></option>
 		</select>
 
 		<button @click="beginQuiz">Start Quiz</button>
@@ -16,7 +15,7 @@
 
   export default {
     name: 'intro',
-    props: ['user'],
+    props: ['user','userName','members'],
     methods: {
     	beginQuiz() {
     		eventBus.$emit('quizBegin');

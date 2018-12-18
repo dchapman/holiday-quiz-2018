@@ -12,9 +12,13 @@
     <div class="wrapper" id="app">
 
       <main class="main">
-        <p>HELLO <span v-text="user"></span></p>
+        <p>HELLO <span v-text="userName"></span></p>
         <p>SCORE <span v-text="score"></span></p>
-        <component :is="stage" :score.sync="score" :user.sync="user"></component>
+        <component :is="stage"
+                   :score.sync="score"
+                   :user.sync="user"
+                   :user-name.sync="userName"
+                   :members="members"></component>
       </main>
 
     </div>

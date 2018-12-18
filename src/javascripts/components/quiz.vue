@@ -2,7 +2,9 @@
 	<div class="quiz">
 		<h1>THIS IS THE QUIZ</h1>
 
-		<button @click="completeQuiz">Complete Quiz</button>
+    <question v-for="(question, index) in questions" v-if="index === current" :details="question"></question>
+
+		<button @click="advance">Advance</button>
 	</div>
 </template>
 
@@ -10,19 +12,25 @@
 	import Question from './question.vue';
 	import { eventBus } from "../main";
 
+  import 'whatwg-fetch';
+  import {apiEndpoint, bearerToken} from '../utils/config';
+
+  import {sampleSize} from 'lodash';
+
   export default {
     name: 'quiz',
-		props: ['choomer'],
+		props: ['user'],
     data() {
 			return {
 			  questions: [],
 				current: 0,
+        limit: 8,
         isLoaded: false
 			}
     },
-		created() {
-			this.createQuestions();
-		},
+		mounted() {
+      this.createQuestions();
+    },
     methods: {
     	completeQuiz() {
     		eventBus.$emit('quizComplete');
@@ -30,18 +38,21 @@
     	createQuestions() {
         this.isLoaded = false;
 
+        console.log('creating');
+
         const query = `
-          query($id: ID!) {
-            getChoomer(_id: $id) {
-              quickFacts {
-                text
+          query {
+            getQuizList {
+              total
+              items {
+                title
               }
             }
           }
         `;
 
         const variables = {
-          id: this.id
+          id: this.user._id
         };
 
         fetch(apiEndpoint, {
@@ -50,18 +61,24 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${bearerToken}`
           },
-          body: JSON.stringify({query, variables})
+          body: JSON.stringify({query})
         })
           .then(res => res.json())
           .then(res => {
-            const facts = res.data.getCategory.quickFacts;
+            const allQuestions = res.data.getQuizList.items;
 
-            console.log(facts);
+            this.questions = sampleSize(allQuestions, 9);
 
-            this.slides.push(...facts);
             this.isLoaded = true;
           });
-			}
+			},
+      advance() {
+    	  if(this.current < this.limit) {
+    	    this.current++;
+        } else {
+          eventBus.$emit('quizComplete');
+        }
+      }
     },
     components: {
 			Question
