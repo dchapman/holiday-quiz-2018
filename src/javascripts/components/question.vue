@@ -1,5 +1,7 @@
 <template>
-  <div class="question" v-text="details.title"></div>
+  <div class="question">
+    <h2 class="question__text" v-text="details.question.surveyQuestion"></h2>
+  </div>
 </template>
 
 <script>

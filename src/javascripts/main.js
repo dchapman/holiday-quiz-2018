@@ -23,17 +23,18 @@ export default new Vue({
       stage: 'intro',
       score: 0,
       userName: '',
-      members: [],
+      choomers: [],
       isLoaded: false
     };
   },
   computed: {
     user() {
-      return this.members.filter(member => member.name === this.userName);
+      return this.choomers.filter(choomer => choomer.name === this.userName);
     }
   },
   created() {
     this.fetchChoomers();
+    s.setAccessToken('BQA9MTytmpH3ScAYiwijqu_NIA1T6yqEgAMKmMaKGv7juhOcBfy5CWeDpx9RuzDCz0S2OIi_zWQN6gvxhRjGkTQlgtfJcsckWLytVa8dYfJ97hhXVnVyn74COvvxZblp8oX7FSPDH-fqZ0ctEwJpCoZc5oNtnLGMobfDbm1xmL0NEkLjCXT8CgZjT06Dh5EbO7T-msUcG8h0');
   },
   mounted() {
     eventBus.$on('quizBegin', () => {
@@ -75,8 +76,8 @@ export default new Vue({
       })
         .then(res => res.json())
         .then(res => {
-          this.members = res.data.getChoomerList.items;
-          this.userName = this.members[0].name;
+          this.choomers = res.data.getChoomerList.items;
+          this.userName = this.choomers[0].name;
           this.isLoaded = true;
         })
         .catch(function (error) {

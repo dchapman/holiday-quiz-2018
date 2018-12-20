@@ -2,7 +2,9 @@
 	<div class="quiz">
 		<h1>THIS IS THE QUIZ</h1>
 
-    <question v-for="(question, index) in questions" v-if="index === current" :details="question"></question>
+    <question v-for="(question, index) in questions"
+              v-if="index === current"
+              :details="question"></question>
 
 		<button @click="advance">Advance</button>
 	</div>
@@ -17,6 +19,9 @@
 
   import {sampleSize} from 'lodash';
 
+  var Spotify = require('spotify-web-api-js');
+  var s = new Spotify();
+
   export default {
     name: 'quiz',
 		props: ['user'],
@@ -30,6 +35,11 @@
     },
 		mounted() {
       this.createQuestions();
+
+      s.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function(err, data) {
+        if (err) console.error(err);
+        else console.log('Artist albums', data);
+      });
     },
     methods: {
     	completeQuiz() {
@@ -46,6 +56,18 @@
               total
               items {
                 title
+                question {
+                  title
+                  surveyQuestion
+                }
+                respondent {
+                  name
+                }
+                subject {
+                  name
+                }
+                spotifyId
+                hint
               }
             }
           }
@@ -75,6 +97,8 @@
       advance() {
     	  if(this.current < this.limit) {
     	    this.current++;
+
+    	    console.log(this.questions[this.current]);
         } else {
           eventBus.$emit('quizComplete');
         }
